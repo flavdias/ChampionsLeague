@@ -1,6 +1,8 @@
 package com.example.flavi.championsleague
 
+import android.content.Context
 import com.beust.klaxon.Klaxon
+import com.example.flavi.viewmodel.GrupoController
 import com.example.flavi.domain.Grupo
 import com.example.flavi.domain.Time
 import java.io.File
@@ -10,14 +12,14 @@ class Sorteio {
 
     companion object {
         private const val PATH = "src/main/assets/"
-        val NOMES_GRUPOS = arrayOf("GRUPO A",
-                "GRUPO B",
-                "GRUPO C",
-                "GRUPO D",
-                "GRUPO E",
-                "GRUPO F",
-                "GRUPO G",
-                "GRUPO H")
+        val NOMES_GRUPOS = arrayOf("A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F",
+                "G",
+                "H")
         const val CARGA_TIMES = "$PATH/times.json"
         const val CARGA_PAISES = "$PATH/paises.json"
     }
@@ -25,9 +27,14 @@ class Sorteio {
     var grupos = arrayOfNulls<Grupo>(8)
     var times = mutableListOf<Time>()
 
-    constructor() {
+    var grupoController: GrupoController
+    var context: Context
+
+    constructor(context: Context) {
+        this.context = context
         criaGrupos()
         criaTimes()
+        grupoController = GrupoController(context)
     }
 
     fun executaSorteio() {
@@ -53,11 +60,11 @@ class Sorteio {
             var paisesAdicionados: List<String>? = null
 
             if (i != 1)
-                paisesAdicionados = grupos[i]?.getPaises()
+                paisesAdicionados = grupoController.getPaises(grupos[i])?.map { it.sigla }
 
             val timeAux = sorteiaTime(timesPote, paisesAdicionados)
 
-            grupos[i]?.addGrupo(timeAux)
+            grupos[i]?.let { grupoController.addTime(it, timeAux) }
             times.remove(timeAux)
         }
     }
