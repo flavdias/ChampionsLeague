@@ -90,4 +90,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="hint_pais">Pais...</string>
+    <string name="botao_salvar">Salvar</string>
+    <string name="erro_salvar">Pais não salvo porque está vazio.</string>
 </resources>

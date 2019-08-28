@@ -15,7 +15,7 @@ class PaisViewModel(application: Application): AndroidViewModel(application) {
     val todosPaises: LiveData<List<Pais>>
 
     init {
-        val paisDao = ChampionsDatabase.getDatabase(application).paisDao()
+        val paisDao = ChampionsDatabase.getDatabase(application, viewModelScope).paisDao()
         repository = PaisRepository(paisDao)
         todosPaises = repository.todosPaises
     }

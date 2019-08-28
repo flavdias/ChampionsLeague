@@ -28,4 +28,7 @@ interface PaisDao {
     @Query("select p.* from pais p inner join time t on p.sigla = t.pais inner join grupo g on t.sigla in (g.time1, time2, time3, time4) where g.nome = :nome")
     fun findPaisInGrupo(nome: String): LiveData<List<Pais>>
 
+    @Query("DELETE FROM pais")
+    fun deleteAll()
+
 }
