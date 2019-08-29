@@ -20,7 +20,7 @@ interface PaisDao {
     fun findByName(nome: String): LiveData<Pais>
 
     @Insert
-    fun insertAll(vararg users: Pais)
+    suspend fun insertAll(vararg users: Pais)
 
     @Delete
     fun delete(user: Pais)
@@ -29,6 +29,6 @@ interface PaisDao {
     fun findPaisInGrupo(nome: String): LiveData<List<Pais>>
 
     @Query("DELETE FROM pais")
-    fun deleteAll()
+    suspend fun deleteAll()
 
 }

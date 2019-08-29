@@ -24,7 +24,7 @@ class NovoPaisActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val pais = editPaisView.text.toString()
-                replyIntent.putExtra(EXTRA_REPLY, replyIntent)
+                replyIntent.putExtra(EXTRA_REPLY, pais)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()

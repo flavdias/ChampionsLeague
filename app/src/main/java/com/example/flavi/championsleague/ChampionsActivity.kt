@@ -16,16 +16,12 @@ import com.example.flavi.domain.Pais
 import com.example.flavi.viewmodel.PaisViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ChampionsActivity : AppCompatActivity {
+class ChampionsActivity : AppCompatActivity() {
 
     private lateinit var paisViewModel: PaisViewModel
 
     companion object {
         const val novoPaisActivityRequestCode = 1
-    }
-
-    constructor() {
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +33,6 @@ class ChampionsActivity : AppCompatActivity {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val adapter = PaisAdapter(this)
-
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
